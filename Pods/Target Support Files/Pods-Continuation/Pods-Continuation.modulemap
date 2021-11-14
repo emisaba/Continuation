@@ -1,0 +1,6 @@
+framework module Pods_Continuation {
+  umbrella header "Pods-Continuation-umbrella.h"
+
+  export *
+  module * { export * }
+}
