@@ -6,7 +6,7 @@ class HeaderViewCard: UIView {
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.backgroundColor = .systemBlue
         return iv
     }()
