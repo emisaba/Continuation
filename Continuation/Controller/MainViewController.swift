@@ -6,6 +6,7 @@ class MainViewController: UIViewController {
     // MARK: - Properties
     
     private let headerView = HeaderView()
+    private let recordBaseView = RecordBaseView()
     private let recordView = RecordView()
     
     private var records: [Record] = [] {
@@ -30,6 +31,10 @@ class MainViewController: UIViewController {
         
         fetchRecord()
         configureUI()
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
     
     // MARK: - API
@@ -66,6 +71,12 @@ class MainViewController: UIViewController {
                             paddingBottom: 30)
         cameraButton.setDimensions(height: 60, width: 60)
         cameraButton.centerX(inView: view)
+        
+        view.addSubview(recordBaseView)
+        recordBaseView.anchor(top: headerView.bottomAnchor,
+                              left: view.leftAnchor,
+                              bottom: cameraButton.topAnchor,
+                              right: view.rightAnchor)
         
         view.addSubview(recordView)
         recordView.anchor(top: headerView.bottomAnchor,

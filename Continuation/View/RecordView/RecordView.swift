@@ -4,19 +4,17 @@ class RecordView: UIView {
     
     // MARK: - Properties
     
-    private var cellIdentifier = "cellIdentifier"
+    public var cellIdentifier = "cellIdentifier"
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = frame.width / 20
-        layout.minimumInteritemSpacing = frame.width / 20
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
         cv.register(RecordViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        cv.backgroundColor = .white
         cv.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        cv.backgroundColor = .clear
         return cv
     }()
     
@@ -58,5 +56,13 @@ extension RecordView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = frame.width / 10
         return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return frame.width / 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return frame.width / 20
     }
 }

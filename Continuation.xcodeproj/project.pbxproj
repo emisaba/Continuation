@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1CAB4C20C87F73CD2A2A56E4 /* Pods_Continuation_ContinuationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30C16F9BEB6444E1FF8A0A7 /* Pods_Continuation_ContinuationUITests.framework */; };
 		7B15AEFA2E5A5C5661F8BCC8 /* Pods_Continuation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92867629BA8C9046885ACDC /* Pods_Continuation.framework */; };
+		820929642743D5A0009C743A /* RecordBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929632743D5A0009C743A /* RecordBaseView.swift */; };
+		820929662743D899009C743A /* RecordBaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929652743D899009C743A /* RecordBaseViewCell.swift */; };
 		8222ABD8274117DA001063D7 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8222ABD7274117D9001063D7 /* RecordView.swift */; };
 		82278863274126BC00277436 /* HeaderViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82278862274126BC00277436 /* HeaderViewCard.swift */; };
 		8247EC022740F9C40067EC90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC012740F9C40067EC90 /* AppDelegate.swift */; };
@@ -54,6 +56,8 @@
 		57721EBC4267BCD91ABFB48C /* Pods-ContinuationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContinuationTests.release.xcconfig"; path = "Target Support Files/Pods-ContinuationTests/Pods-ContinuationTests.release.xcconfig"; sourceTree = "<group>"; };
 		69A1633206E3798E53ADFA71 /* Pods-ContinuationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContinuationTests.debug.xcconfig"; path = "Target Support Files/Pods-ContinuationTests/Pods-ContinuationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E7279545AFBDC601A127E3A /* Pods-Continuation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Continuation.release.xcconfig"; path = "Target Support Files/Pods-Continuation/Pods-Continuation.release.xcconfig"; sourceTree = "<group>"; };
+		820929632743D5A0009C743A /* RecordBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBaseView.swift; sourceTree = "<group>"; };
+		820929652743D899009C743A /* RecordBaseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBaseViewCell.swift; sourceTree = "<group>"; };
 		8222ABD7274117D9001063D7 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		82278862274126BC00277436 /* HeaderViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCard.swift; sourceTree = "<group>"; };
 		8247EBFE2740F9C40067EC90 /* Continuation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Continuation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,8 @@
 			children = (
 				8222ABD7274117D9001063D7 /* RecordView.swift */,
 				8247EC372740F9ED0067EC90 /* RecordViewCell.swift */,
+				820929632743D5A0009C743A /* RecordBaseView.swift */,
+				820929652743D899009C743A /* RecordBaseViewCell.swift */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -517,7 +523,9 @@
 				82E0A53B2740FD3A0095D376 /* DataFormatterExtension.swift in Sources */,
 				8247EC422740F9ED0067EC90 /* DayViewModel.swift in Sources */,
 				8247EC442740F9ED0067EC90 /* RecordViewCell.swift in Sources */,
+				820929642743D5A0009C743A /* RecordBaseView.swift in Sources */,
 				8247EC042740F9C40067EC90 /* SceneDelegate.swift in Sources */,
+				820929662743D899009C743A /* RecordBaseViewCell.swift in Sources */,
 				8247EC492740F9EE0067EC90 /* UIViewExtension.swift in Sources */,
 				8247EC472740F9EE0067EC90 /* RecordService.swift in Sources */,
 				8247EC412740F9ED0067EC90 /* MainViewController.swift in Sources */,
