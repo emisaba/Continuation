@@ -12,9 +12,10 @@ class RecordViewCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 5
+        iv.layer.cornerRadius = 10
+        iv.layer.borderWidth = 1.5
+        iv.layer.borderColor = UIColor.customRed().cgColor
         iv.clipsToBounds = true
-        iv.backgroundColor = .systemOrange
         return iv
     }()
     

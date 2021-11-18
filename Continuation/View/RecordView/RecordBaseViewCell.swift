@@ -9,19 +9,25 @@ class RecordViewBaseCell: UICollectionViewCell {
         didSet { countLabel.text = "\(countLabelNumber)" }
     }
     
-    private let imageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 5
-        iv.clipsToBounds = true
-        iv.backgroundColor = .systemOrange
+        iv.layer.cornerRadius = 10
+        iv.layer.borderWidth = 1.5
+        iv.layer.borderColor = UIColor.customRed().cgColor
+        iv.layer.shadowColor = UIColor.black.withAlphaComponent(0.2).cgColor
+        iv.layer.shadowOffset = CGSize(width: 2, height: 2)
+        iv.layer.shadowRadius = 2
+        iv.layer.shadowOpacity = 1
+        iv.backgroundColor = .white
         return iv
     }()
     
     private let countLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .customRed()
+        label.font = .aileron(size: 20)
         return label
     }()
     
@@ -31,7 +37,8 @@ class RecordViewBaseCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(imageView)
-        imageView.fillSuperview()
+//        imageView.fillSuperview()
+        imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingBottom: 2, paddingRight: 2)
         
         imageView.addSubview(countLabel)
         countLabel.fillSuperview()
