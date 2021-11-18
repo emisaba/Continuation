@@ -5,7 +5,7 @@ class RecordBaseView: RecordView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .customYellow()
         collectionView.register(RecordViewBaseCell.self, forCellWithReuseIdentifier: cellIdentifier)
     }
     

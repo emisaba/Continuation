@@ -7,13 +7,14 @@ class HeaderViewCard: UIView {
     private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .systemBlue
         return iv
     }()
     
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
+        label.font = .aileron(size: 20)
+        label.textColor = .customRed()
         return label
     }()
     
@@ -37,15 +38,15 @@ class HeaderViewCard: UIView {
     func configureUI() {
         
         addSubview(imageView)
-        imageView.anchor(top: safeAreaLayoutGuide.topAnchor,
-                             left: leftAnchor,
-                             bottom: bottomAnchor,
-                             right: rightAnchor)
-        imageView.sd_setImage(with: URL(string: record.imageUrl))
-
-        imageView.addSubview(dateLabel)
-        dateLabel.anchor(top: safeAreaLayoutGuide.topAnchor,
+        imageView.anchor(top: topAnchor,
                          left: leftAnchor,
+                         bottom: bottomAnchor,
+                         right: rightAnchor)
+        imageView.sd_setImage(with: URL(string: record.imageUrl))
+        
+        imageView.addSubview(dateLabel)
+        dateLabel.anchor(left: leftAnchor,
+                         bottom: bottomAnchor,
                          right: rightAnchor,
                          paddingRight: 10,
                          height: 50)

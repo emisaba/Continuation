@@ -13,7 +13,7 @@ class RecordView: UIView {
         cv.delegate = self
         cv.dataSource = self
         cv.register(RecordViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        cv.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        cv.contentInset = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
         cv.backgroundColor = .clear
         return cv
     }()
@@ -54,15 +54,17 @@ extension RecordView: UICollectionViewDataSource {
 
 extension RecordView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = frame.width / 10
+        let contentInset: CGFloat = 80
+        let spaceBetween: CGFloat = 20 * 4
+        let width = (frame.width - contentInset - spaceBetween) / 5
         return CGSize(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return frame.width / 20
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return frame.width / 20
+        return 20
     }
 }

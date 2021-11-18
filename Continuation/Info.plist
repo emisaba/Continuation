@@ -60,5 +60,11 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Please allow us to take a photo</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Matchbook.ttf</string>
+		<string>x3cosmo-Regular.otf</string>
+		<string>Ailerons-Regular.otf</string>
+	</array>
 </dict>
 </plist>
