@@ -37,8 +37,12 @@ class RecordViewBaseCell: UICollectionViewCell {
         super.init(frame: frame)
         
         addSubview(imageView)
-//        imageView.fillSuperview()
-        imageView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingBottom: 2, paddingRight: 2)
+        imageView.anchor(top: topAnchor,
+                         left: leftAnchor,
+                         bottom: bottomAnchor,
+                         right: rightAnchor,
+                         paddingBottom: 2,
+                         paddingRight: 2)
         
         imageView.addSubview(countLabel)
         countLabel.fillSuperview()

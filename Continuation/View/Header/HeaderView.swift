@@ -3,7 +3,6 @@ import SDWebImage
 
 protocol HeaderViewDelegate {
     func startAnimation(headerView: HeaderView)
-    func endRecording(headerView: HeaderView)
 }
 
 class HeaderView: UIView {
@@ -16,7 +15,7 @@ class HeaderView: UIView {
     public var topView: HeaderViewCard?
     
     public let baseView = UIView()
-    private lazy var startButton: UIButton = {
+    public lazy var startButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "start"), for: .normal)
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
@@ -26,12 +25,6 @@ class HeaderView: UIView {
     }()
     
     public var startAnimationCount = 0
-    
-    public let customAlert: CustomAlert = {
-        let alert = CustomAlert()
-        alert.alpha = 0
-        return alert
-    }()
     
     public var days: [Record] = [] {
         didSet {
@@ -49,11 +42,6 @@ class HeaderView: UIView {
         addSubview(baseView)
         baseView.fillSuperview()
         
-        addSubview(customAlert)
-        customAlert.centerX(inView: self)
-        customAlert.centerY(inView: self)
-        customAlert.setDimensions(height: 140, width: 220)
-        
         configureStartButtton()
     }
     
@@ -64,8 +52,6 @@ class HeaderView: UIView {
     // MARK: - Actions
     
     @objc func didTapStartButton() {
-        
-        startButton.removeFromSuperview()
         self.delegate?.startAnimation(headerView: self)
     }
     
@@ -74,7 +60,7 @@ class HeaderView: UIView {
     func configureSlides() {
         
         days.forEach { day in
-            let headerView = HeaderViewCard(frame: .zero, day: day)
+            let headerView = HeaderViewCard(frame: .zero, day: day, animationView: false)
             baseView.addSubview(headerView)
             headerView.fillSuperview()
             headerView.alpha = 0
@@ -92,31 +78,6 @@ class HeaderView: UIView {
         startButton.setDimensions(height: 60, width: 60)
         startButton.centerX(inView: baseView)
         startButton.centerY(inView: baseView)
-    }
-    
-    func isLastSlide() -> Bool {
-        return topView == nil ? true : false
-    }
-    
-    func startAnimation() {
-        
-        Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false) { _ in
-            UIView.animate(withDuration: 2) {
-                self.topView?.alpha = 0
-                
-            } completion: { _ in
-                self.topView?.removeFromSuperview()
-                self.viewsInContainer.removeAll(where: { self.topView == $0 })
-                self.topView = self.viewsInContainer.last
-                
-                if self.isLastSlide() {
-                    self.delegate?.endRecording(headerView: self)
-                    
-                } else {
-                    self.startAnimation()
-                }
-            }
-        }
     }
     
     func prepareToFetch() {

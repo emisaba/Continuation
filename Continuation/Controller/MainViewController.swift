@@ -14,6 +14,14 @@ class MainViewController: UIViewController {
         return view
     }()
     
+    public lazy var animationView: AnimationView = {
+        let view = AnimationView()
+        view.animationViewDelegate = self
+        view.isHidden = true
+        view.startButton.isHidden = true
+        return view
+    }()
+    
     private lazy var cameraButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .customRed()
@@ -24,7 +32,7 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private lazy var coloseAnimationButton: UIButton = {
+    public lazy var coloseAnimationButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
         button.alpha = 0
@@ -32,8 +40,8 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    private let recorder = RPScreenRecorder.shared()
-    private var previewVC: RPPreviewViewController?
+    public let recorder = RPScreenRecorder.shared()
+    public var previewVC: RPPreviewViewController?
     
     private let recordBaseView = RecordBaseView()
     private let recordView = RecordView()
@@ -42,6 +50,7 @@ class MainViewController: UIViewController {
         didSet {
             recordView.days = records
             headerView.days = records
+            animationView.days = records
         }
     }
     
@@ -76,7 +85,12 @@ class MainViewController: UIViewController {
     }
     
     @objc func didTapCloseAnimationButton() {
-        
+        UIView.animate(withDuration: 0.1) {
+            self.animationView.frame.size.height = self.view.frame.height / 3
+            self.view.layoutIfNeeded()
+        } completion: { _ in
+            self.animationView.isHidden = true
+        }
     }
     
     // MARK: - Helpers
@@ -95,11 +109,6 @@ class MainViewController: UIViewController {
         view.addSubview(headerView)
         headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3)
         
-        headerView.addSubview(coloseAnimationButton)
-        coloseAnimationButton.frame = CGRect(x: headerView.frame.width - 80,
-                                                 y: 40,
-                                                 width: 60, height: 60)
-        
         view.addSubview(cameraButton)
         cameraButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
                             paddingBottom: 10)
@@ -117,18 +126,30 @@ class MainViewController: UIViewController {
                           left: view.leftAnchor,
                           bottom: cameraButton.topAnchor,
                           right: view.rightAnchor)
+        
+        view.addSubview(animationView)
+        animationView.frame = CGRect(x: 0,
+                                     y: 0,
+                                     width: self.view.frame.width,
+                                     height: self.view.frame.height / 3)
+        animationView.backgroundColor = .white
+        
+        animationView.addSubview(coloseAnimationButton)
+        coloseAnimationButton.frame = CGRect(x: headerView.frame.width - 80,
+                                                 y: 40,
+                                                 width: 60, height: 60)
     }
     
-    func showStartAnimationView() {
-        headerView.customAlert.alpha = 0
+    func showAnimationView() {
+        animationView.customAlert.alpha = 0
         dismiss(animated: true, completion: nil)
         
-        headerView.startAnimationCount = 0
-        headerView.configureSlides()
-        headerView.configureStartButtton()
+        animationView.startAnimationCount = 0
+        animationView.configureSlides()
+        animationView.startButton.isHidden = false
         
         UIView.animate(withDuration: 0.25) {
-            self.headerView.viewsInContainer.forEach { $0.alpha = 1 }
+            self.animationView.viewsInContainer.forEach { $0.alpha = 1 }
         }
     }
 }
@@ -153,79 +174,5 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
             
             self.dismiss(animated: true, completion: nil)
         }
-    }
-}
-
-// MARK: - HeaderViewDelegate
-
-extension MainViewController: HeaderViewDelegate {
-    
-    func endRecording(headerView: HeaderView) {
-        
-        recorder.stopRecording { previewVC, error in
-            if let error = error {
-                print("failed to stop recording: \(error.localizedDescription)")
-            }
-            
-            self.headerView.customAlert.alpha = 1
-            self.headerView.customAlert.delegate = self
-            self.coloseAnimationButton.alpha = 1
-            
-            if let previewVC = previewVC {
-                self.previewVC = previewVC
-            }
-        }
-    }
-    
-    func startAnimation(headerView: HeaderView) {
-        createAnimationView()
-        coloseAnimationButton.alpha = 0
-        
-        UIView.animate(withDuration: 0.1) {
-            self.headerView.frame = self.view.frame
-            self.view.layoutIfNeeded()
-
-        } completion: { _ in
-            self.recorder.startRecording { error in
-                if let error = error {
-                    print("failed to start recording: \(error.localizedDescription)")
-                }
-                headerView.startAnimation()
-            }
-        }
-    }
-    
-    func createAnimationView() {
-        view.addSubview(self.headerView)
-        headerView.frame = CGRect(x: 0,
-                                       y: 0,
-                                       width: self.view.frame.width,
-                                       height: self.view.frame.height / 3)
-        headerView.backgroundColor = .white
-    }
-}
-
-// MARK: - RPPreviewViewControllerDelegate
-
-extension MainViewController: RPPreviewViewControllerDelegate {
-    
-    func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
-        showStartAnimationView()
-    }
-}
-
-// MARK: - CustomAlertDelegate
-
-extension MainViewController: CustomAlertDelegate {
-    
-    func onClickYesButton() {
-        guard let previewVC = self.previewVC else { return }
-        previewVC.previewControllerDelegate = self
-        previewVC.modalPresentationStyle = .fullScreen
-        self.present(previewVC, animated: true, completion: nil)
-    }
-    
-    func onClickNoButton() {
-        showStartAnimationView()
     }
 }

@@ -37,7 +37,12 @@ class RecordViewCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         addSubview(imageView)
-        imageView.fillSuperview()
+        imageView.anchor(top: topAnchor,
+                         left: leftAnchor,
+                         bottom: bottomAnchor,
+                         right: rightAnchor,
+                         paddingBottom: 2,
+                         paddingRight: 2)
         imageView.sd_setImage(with: viewModel.imageURL, completed: nil)
     }
 }

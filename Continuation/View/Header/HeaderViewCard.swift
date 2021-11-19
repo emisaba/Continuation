@@ -10,10 +10,9 @@ class HeaderViewCard: UIView {
         return iv
     }()
     
-    private let dateLabel: UILabel = {
+    public let dateLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = .aileron(size: 20)
         label.textColor = .customRed()
         return label
     }()
@@ -22,8 +21,9 @@ class HeaderViewCard: UIView {
     
     // MARK: - LifeCycle
     
-    init(frame: CGRect, day: Record) {
+    init(frame: CGRect, day: Record, animationView: Bool) {
         self.record = day
+        dateLabel.font = .aileron(size: animationView ? 30 : 20)
         
         super.init(frame: frame)
         configureUI()
@@ -46,7 +46,7 @@ class HeaderViewCard: UIView {
         
         imageView.addSubview(dateLabel)
         dateLabel.anchor(left: leftAnchor,
-                         bottom: bottomAnchor,
+                         bottom: safeAreaLayoutGuide.bottomAnchor,
                          right: rightAnchor,
                          paddingRight: 10,
                          height: 50)

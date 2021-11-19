@@ -34,6 +34,8 @@
 		8247EC492740F9EE0067EC90 /* UIView + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC3E2740F9ED0067EC90 /* UIView + Extension.swift */; };
 		8247EC4A2740F9EE0067EC90 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC402740F9ED0067EC90 /* Record.swift */; };
 		8247EC4C2740FB3D0067EC90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8247EC4B2740FB3C0067EC90 /* GoogleService-Info.plist */; };
+		825E696B2746A4B50054294C /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E696A2746A4B50054294C /* AnimationView.swift */; };
+		825E696D2746B64B0054294C /* MainViewController + AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E696C2746B64B0054294C /* MainViewController + AnimationView.swift */; };
 		8261C52127464F5E00FDA871 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261C52027464F5800FDA871 /* CustomAlert.swift */; };
 		82E0A53B2740FD3A0095D376 /* DataFormatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0A53A2740FD3A0095D376 /* DataFormatter + Extension.swift */; };
 		998BDD8EF6E5F31E211397E7 /* Pods_ContinuationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2817075D2C54D45F9665D53 /* Pods_ContinuationTests.framework */; };
@@ -93,6 +95,8 @@
 		8247EC3E2740F9ED0067EC90 /* UIView + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView + Extension.swift"; sourceTree = "<group>"; };
 		8247EC402740F9ED0067EC90 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		8247EC4B2740FB3C0067EC90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		825E696A2746A4B50054294C /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
+		825E696C2746B64B0054294C /* MainViewController + AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + AnimationView.swift"; sourceTree = "<group>"; };
 		8261C52027464F5800FDA871 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		82E0A53A2740FD3A0095D376 /* DataFormatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFormatter + Extension.swift"; sourceTree = "<group>"; };
 		A2817075D2C54D45F9665D53 /* Pods_ContinuationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContinuationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +148,7 @@
 			children = (
 				8247EC382740F9ED0067EC90 /* HeaderView.swift */,
 				82278862274126BC00277436 /* HeaderViewCard.swift */,
+				825E696A2746A4B50054294C /* AnimationView.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				8247EC322740F9ED0067EC90 /* MainViewController.swift */,
+				825E696C2746B64B0054294C /* MainViewController + AnimationView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -547,6 +553,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8247EC022740F9C40067EC90 /* AppDelegate.swift in Sources */,
+				825E696B2746A4B50054294C /* AnimationView.swift in Sources */,
 				8222ABD8274117DA001063D7 /* RecordView.swift in Sources */,
 				8209296E274508C9009C743A /* UIFont + Extension.swift in Sources */,
 				8247EC482740F9EE0067EC90 /* ImageUploader.swift in Sources */,
@@ -558,6 +565,7 @@
 				8247EC042740F9C40067EC90 /* SceneDelegate.swift in Sources */,
 				8209296A2744EC6C009C743A /* UIColor + Extension.swift in Sources */,
 				820929662743D899009C743A /* RecordBaseViewCell.swift in Sources */,
+				825E696D2746B64B0054294C /* MainViewController + AnimationView.swift in Sources */,
 				8247EC492740F9EE0067EC90 /* UIView + Extension.swift in Sources */,
 				8247EC472740F9EE0067EC90 /* RecordService.swift in Sources */,
 				8247EC412740F9ED0067EC90 /* MainViewController.swift in Sources */,
