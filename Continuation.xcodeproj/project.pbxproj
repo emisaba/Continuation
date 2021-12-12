@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		1CAB4C20C87F73CD2A2A56E4 /* Pods_Continuation_ContinuationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F30C16F9BEB6444E1FF8A0A7 /* Pods_Continuation_ContinuationUITests.framework */; };
 		7B15AEFA2E5A5C5661F8BCC8 /* Pods_Continuation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B92867629BA8C9046885ACDC /* Pods_Continuation.framework */; };
-		820929642743D5A0009C743A /* RecordBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929632743D5A0009C743A /* RecordBaseView.swift */; };
-		820929662743D899009C743A /* RecordBaseViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929652743D899009C743A /* RecordBaseViewCell.swift */; };
+		820929642743D5A0009C743A /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929632743D5A0009C743A /* RecordView.swift */; };
+		820929662743D899009C743A /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929652743D899009C743A /* RecordViewCell.swift */; };
 		8209296A2744EC6C009C743A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929692744EC6C009C743A /* UIColor + Extension.swift */; };
 		8209296C27450838009C743A /* Matchbook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8209296B27450837009C743A /* Matchbook.ttf */; };
 		8209296E274508C9009C743A /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209296D274508C9009C743A /* UIFont + Extension.swift */; };
 		8209297027450AE7009C743A /* x3cosmo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8209296F27450AE7009C743A /* x3cosmo-Regular.otf */; };
 		8209297327450CCF009C743A /* Ailerons-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8209297227450CCF009C743A /* Ailerons-Regular.otf */; };
-		8222ABD8274117DA001063D7 /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8222ABD7274117D9001063D7 /* RecordView.swift */; };
 		82278863274126BC00277436 /* HeaderViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82278862274126BC00277436 /* HeaderViewCard.swift */; };
 		8247EC022740F9C40067EC90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC012740F9C40067EC90 /* AppDelegate.swift */; };
 		8247EC042740F9C40067EC90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC032740F9C40067EC90 /* SceneDelegate.swift */; };
@@ -25,8 +24,7 @@
 		8247EC192740F9CB0067EC90 /* ContinuationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC182740F9CB0067EC90 /* ContinuationTests.swift */; };
 		8247EC242740F9CB0067EC90 /* ContinuationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC232740F9CB0067EC90 /* ContinuationUITests.swift */; };
 		8247EC412740F9ED0067EC90 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC322740F9ED0067EC90 /* MainViewController.swift */; };
-		8247EC422740F9ED0067EC90 /* DayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC342740F9ED0067EC90 /* DayViewModel.swift */; };
-		8247EC442740F9ED0067EC90 /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC372740F9ED0067EC90 /* RecordViewCell.swift */; };
+		8247EC422740F9ED0067EC90 /* RecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC342740F9ED0067EC90 /* RecordViewModel.swift */; };
 		8247EC452740F9ED0067EC90 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC382740F9ED0067EC90 /* HeaderView.swift */; };
 		8247EC462740F9ED0067EC90 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC3A2740F9ED0067EC90 /* Constants.swift */; };
 		8247EC472740F9EE0067EC90 /* RecordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC3B2740F9ED0067EC90 /* RecordService.swift */; };
@@ -35,8 +33,11 @@
 		8247EC4A2740F9EE0067EC90 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8247EC402740F9ED0067EC90 /* Record.swift */; };
 		8247EC4C2740FB3D0067EC90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8247EC4B2740FB3C0067EC90 /* GoogleService-Info.plist */; };
 		825E696B2746A4B50054294C /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E696A2746A4B50054294C /* AnimationView.swift */; };
-		825E696D2746B64B0054294C /* MainViewController + AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E696C2746B64B0054294C /* MainViewController + AnimationView.swift */; };
 		8261C52127464F5E00FDA871 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261C52027464F5800FDA871 /* CustomAlert.swift */; };
+		82D6423D2765AEE500346190 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6423C2765AEE200346190 /* CalendarHelper.swift */; };
+		82D6423F2766059100346190 /* DataForSingleDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6423E2766058C00346190 /* DataForSingleDay.swift */; };
+		82D6424127660E7B00346190 /* RecordingView + Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6424027660E7B00346190 /* RecordingView + Calendar.swift */; };
+		82D6424327662A3700346190 /* AnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6424227662A3500346190 /* AnimationViewController.swift */; };
 		82E0A53B2740FD3A0095D376 /* DataFormatter + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E0A53A2740FD3A0095D376 /* DataFormatter + Extension.swift */; };
 		998BDD8EF6E5F31E211397E7 /* Pods_ContinuationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2817075D2C54D45F9665D53 /* Pods_ContinuationTests.framework */; };
 /* End PBXBuildFile section */
@@ -64,14 +65,13 @@
 		57721EBC4267BCD91ABFB48C /* Pods-ContinuationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContinuationTests.release.xcconfig"; path = "Target Support Files/Pods-ContinuationTests/Pods-ContinuationTests.release.xcconfig"; sourceTree = "<group>"; };
 		69A1633206E3798E53ADFA71 /* Pods-ContinuationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContinuationTests.debug.xcconfig"; path = "Target Support Files/Pods-ContinuationTests/Pods-ContinuationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7E7279545AFBDC601A127E3A /* Pods-Continuation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Continuation.release.xcconfig"; path = "Target Support Files/Pods-Continuation/Pods-Continuation.release.xcconfig"; sourceTree = "<group>"; };
-		820929632743D5A0009C743A /* RecordBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBaseView.swift; sourceTree = "<group>"; };
-		820929652743D899009C743A /* RecordBaseViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordBaseViewCell.swift; sourceTree = "<group>"; };
+		820929632743D5A0009C743A /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
+		820929652743D899009C743A /* RecordViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewCell.swift; sourceTree = "<group>"; };
 		820929692744EC6C009C743A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 		8209296B27450837009C743A /* Matchbook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Matchbook.ttf; sourceTree = "<group>"; };
 		8209296D274508C9009C743A /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
 		8209296F27450AE7009C743A /* x3cosmo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "x3cosmo-Regular.otf"; sourceTree = "<group>"; };
 		8209297227450CCF009C743A /* Ailerons-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ailerons-Regular.otf"; sourceTree = "<group>"; };
-		8222ABD7274117D9001063D7 /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		82278862274126BC00277436 /* HeaderViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCard.swift; sourceTree = "<group>"; };
 		8247EBFE2740F9C40067EC90 /* Continuation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Continuation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8247EC012740F9C40067EC90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,8 +86,7 @@
 		8247EC232740F9CB0067EC90 /* ContinuationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinuationUITests.swift; sourceTree = "<group>"; };
 		8247EC252740F9CB0067EC90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8247EC322740F9ED0067EC90 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		8247EC342740F9ED0067EC90 /* DayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayViewModel.swift; sourceTree = "<group>"; };
-		8247EC372740F9ED0067EC90 /* RecordViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewCell.swift; sourceTree = "<group>"; };
+		8247EC342740F9ED0067EC90 /* RecordViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewModel.swift; sourceTree = "<group>"; };
 		8247EC382740F9ED0067EC90 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8247EC3A2740F9ED0067EC90 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8247EC3B2740F9ED0067EC90 /* RecordService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordService.swift; sourceTree = "<group>"; };
@@ -96,8 +95,11 @@
 		8247EC402740F9ED0067EC90 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		8247EC4B2740FB3C0067EC90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		825E696A2746A4B50054294C /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
-		825E696C2746B64B0054294C /* MainViewController + AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + AnimationView.swift"; sourceTree = "<group>"; };
 		8261C52027464F5800FDA871 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		82D6423C2765AEE200346190 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		82D6423E2766058C00346190 /* DataForSingleDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataForSingleDay.swift; sourceTree = "<group>"; };
+		82D6424027660E7B00346190 /* RecordingView + Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingView + Calendar.swift"; sourceTree = "<group>"; };
+		82D6424227662A3500346190 /* AnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewController.swift; sourceTree = "<group>"; };
 		82E0A53A2740FD3A0095D376 /* DataFormatter + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataFormatter + Extension.swift"; sourceTree = "<group>"; };
 		A2817075D2C54D45F9665D53 /* Pods_ContinuationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContinuationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B92867629BA8C9046885ACDC /* Pods_Continuation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Continuation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -156,10 +158,9 @@
 		82278866274129EE00277436 /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
-				8222ABD7274117D9001063D7 /* RecordView.swift */,
-				8247EC372740F9ED0067EC90 /* RecordViewCell.swift */,
-				820929632743D5A0009C743A /* RecordBaseView.swift */,
-				820929652743D899009C743A /* RecordBaseViewCell.swift */,
+				820929632743D5A0009C743A /* RecordView.swift */,
+				82D6424027660E7B00346190 /* RecordingView + Calendar.swift */,
+				820929652743D899009C743A /* RecordViewCell.swift */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -238,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				8247EC322740F9ED0067EC90 /* MainViewController.swift */,
-				825E696C2746B64B0054294C /* MainViewController + AnimationView.swift */,
+				82D6424227662A3500346190 /* AnimationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -246,7 +247,7 @@
 		8247EC332740F9ED0067EC90 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				8247EC342740F9ED0067EC90 /* DayViewModel.swift */,
+				8247EC342740F9ED0067EC90 /* RecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -274,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				8247EC3A2740F9ED0067EC90 /* Constants.swift */,
+				82D6423C2765AEE200346190 /* CalendarHelper.swift */,
 				8209297127450B42009C743A /* Font */,
 				8227886727412D4F00277436 /* Extensions */,
 			);
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				8247EC402740F9ED0067EC90 /* Record.swift */,
+				82D6423E2766058C00346190 /* DataForSingleDay.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -554,24 +557,25 @@
 			files = (
 				8247EC022740F9C40067EC90 /* AppDelegate.swift in Sources */,
 				825E696B2746A4B50054294C /* AnimationView.swift in Sources */,
-				8222ABD8274117DA001063D7 /* RecordView.swift in Sources */,
 				8209296E274508C9009C743A /* UIFont + Extension.swift in Sources */,
 				8247EC482740F9EE0067EC90 /* ImageUploader.swift in Sources */,
 				82E0A53B2740FD3A0095D376 /* DataFormatter + Extension.swift in Sources */,
-				8247EC422740F9ED0067EC90 /* DayViewModel.swift in Sources */,
+				8247EC422740F9ED0067EC90 /* RecordViewModel.swift in Sources */,
+				82D6423D2765AEE500346190 /* CalendarHelper.swift in Sources */,
 				8261C52127464F5E00FDA871 /* CustomAlert.swift in Sources */,
-				8247EC442740F9ED0067EC90 /* RecordViewCell.swift in Sources */,
-				820929642743D5A0009C743A /* RecordBaseView.swift in Sources */,
+				820929642743D5A0009C743A /* RecordView.swift in Sources */,
 				8247EC042740F9C40067EC90 /* SceneDelegate.swift in Sources */,
 				8209296A2744EC6C009C743A /* UIColor + Extension.swift in Sources */,
-				820929662743D899009C743A /* RecordBaseViewCell.swift in Sources */,
-				825E696D2746B64B0054294C /* MainViewController + AnimationView.swift in Sources */,
+				820929662743D899009C743A /* RecordViewCell.swift in Sources */,
+				82D6424327662A3700346190 /* AnimationViewController.swift in Sources */,
 				8247EC492740F9EE0067EC90 /* UIView + Extension.swift in Sources */,
 				8247EC472740F9EE0067EC90 /* RecordService.swift in Sources */,
+				82D6423F2766059100346190 /* DataForSingleDay.swift in Sources */,
 				8247EC412740F9ED0067EC90 /* MainViewController.swift in Sources */,
 				8247EC452740F9ED0067EC90 /* HeaderView.swift in Sources */,
 				82278863274126BC00277436 /* HeaderViewCard.swift in Sources */,
 				8247EC4A2740F9EE0067EC90 /* Record.swift in Sources */,
+				82D6424127660E7B00346190 /* RecordingView + Calendar.swift in Sources */,
 				8247EC462740F9ED0067EC90 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,11 +11,9 @@ struct RecordService {
         
         ImageUploader.ImageUploader(image: info.image) { imageUrl in
             
-//            let documentTitle = info.date.replacingOccurrences(of: "/", with: "")
             let date = info.date.replacingOccurrences(of: "/", with: ".")
             let data = ["imageUrl": imageUrl, "date": date]
             
-//            COLLECTION_RECORDS.document(documentTitle).setData(data, completion: completion)
             COLLECTION_RECORDS.addDocument(data: data, completion: completion)
         }
     }

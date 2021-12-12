@@ -15,6 +15,7 @@ class HeaderView: UIView {
     public var topView: HeaderViewCard?
     
     public let baseView = UIView()
+    
     public lazy var startButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "start"), for: .normal)
@@ -37,7 +38,7 @@ class HeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .customYellow()
+        backgroundColor = .clear
         
         addSubview(baseView)
         baseView.fillSuperview()
@@ -65,6 +66,7 @@ class HeaderView: UIView {
             headerView.fillSuperview()
             headerView.alpha = 0
         }
+        
         viewsInContainer = baseView.subviews.map { $0 as! HeaderViewCard }
         topView = viewsInContainer.last
         

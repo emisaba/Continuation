@@ -10,6 +10,7 @@ target 'Continuation' do
   pod 'Firebase/Storage'
   pod 'SDWebImage'
   pod 'lottie-ios' 
+  pod 'Hero'
 
   # Pods for Continuation
 

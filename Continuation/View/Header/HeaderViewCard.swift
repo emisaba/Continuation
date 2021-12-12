@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImage
 
 class HeaderViewCard: UIView {
     
@@ -43,6 +44,7 @@ class HeaderViewCard: UIView {
                          bottom: bottomAnchor,
                          right: rightAnchor)
         imageView.sd_setImage(with: URL(string: record.imageUrl))
+        print(" record.imageUrl:\( record.imageUrl)")
         
         imageView.addSubview(dateLabel)
         dateLabel.anchor(left: leftAnchor,

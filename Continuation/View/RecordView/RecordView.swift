@@ -6,19 +6,48 @@ class RecordView: UIView {
     
     public var cellIdentifier = "cellIdentifier"
     
-    lazy var collectionView: UICollectionView = {
+    public lazy var monthLabel: UILabel = {
+        let label = UILabel()
+        label.font = .aileron(size: 30)
+        label.text = CalendarHelper().titleMonthString(date: selectDate)
+        label.textColor = .customRed()
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var preMonthButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .customRed()
+        button.addTarget(self, action: #selector(didTapPreMonthButton), for: .touchUpInside)
+        button.layer.cornerRadius = 25
+        return button
+    }()
+    
+    private lazy var nextMonthButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .customRed()
+        button.addTarget(self, action: #selector(didTapNextMonthButton), for: .touchUpInside)
+        button.layer.cornerRadius = 25
+        return button
+    }()
+    
+    public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.delegate = self
         cv.dataSource = self
         cv.register(RecordViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        cv.contentInset = UIEdgeInsets(top: 40, left: 40, bottom: 40, right: 40)
         cv.backgroundColor = .clear
+        cv.backgroundColor = .customYellow()
         return cv
     }()
+
+    public var selectDate = Date()
+    public var totalSquare = [String]()
+    public var fullDateForCheckIfRecordExist: [String] = []
     
-    var days: [Record] = [] {
+    public var days: [Record] = [] {
         didSet { collectionView.reloadData() }
     }
     
@@ -26,26 +55,89 @@ class RecordView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        addSubview(collectionView)
-        collectionView.fillSuperview()
+        setMonthView()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Helper
+    
+    func configureUI() {
+        
+        backgroundColor = .customYellow()
+        
+        addSubview(monthLabel)
+        monthLabel.anchor(top: topAnchor,
+                          left: leftAnchor,
+                          right: rightAnchor,
+                          paddingTop: 10,
+                          height: 50)
+        
+        addSubview(preMonthButton)
+        preMonthButton.anchor(left: leftAnchor,
+                              paddingLeft: 10)
+        preMonthButton.setDimensions(height: 50, width: 50)
+        preMonthButton.centerY(inView: monthLabel)
+        
+        addSubview(nextMonthButton)
+        nextMonthButton.anchor(right: rightAnchor,
+                               paddingRight: 10)
+        nextMonthButton.setDimensions(height: 50, width: 50)
+        nextMonthButton.centerY(inView: monthLabel)
+        
+        let stackView = UIStackView(arrangedSubviews: [createWeekLabel(text: "Sun"),
+                                                       createWeekLabel(text: "Mon"),
+                                                       createWeekLabel(text: "Tue"),
+                                                       createWeekLabel(text: "Wed"),
+                                                       createWeekLabel(text: "Thu"),
+                                                       createWeekLabel(text: "Fri"),
+                                                       createWeekLabel(text: "Sat")])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        
+        addSubview(stackView)
+        stackView.anchor(top: monthLabel.bottomAnchor,
+                         left: leftAnchor,
+                         right: rightAnchor,
+                         height: 50)
+        
+        addSubview(collectionView)
+        collectionView.anchor(top: stackView.bottomAnchor,
+                              left: leftAnchor,
+                              bottom: bottomAnchor,
+                              right: rightAnchor,
+                              paddingTop: 0,
+                              paddingLeft: 10,
+                              paddingRight: 10)
+    }
+    
+    func createWeekLabel(text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textAlignment = .center
+        label.textColor = .customRed()
+        label.font = .aileron(size: 16)
+        return label
     }
 }
 
 // MARK: - UICollectionViewDataSource
 
 extension RecordView: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return days.count
+        return totalSquare.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! RecordViewCell
-        cell.viewModel = RecordViewModel(day: days[indexPath.row])
+        
+        let dataForSquare = checkIfRecordExist(totalSquare: totalSquare[indexPath.row])
+        cell.viewModel = RecordViewModel(dataForSquare: dataForSquare)
+        
         return cell
     }
 }
@@ -53,18 +145,17 @@ extension RecordView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension RecordView: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let contentInset: CGFloat = 80
-        let spaceBetween: CGFloat = 20 * 4
-        let width = (frame.width - contentInset - spaceBetween) / 5
+        let width = (collectionView.frame.width - 20) / 8
         return CGSize(width: width, height: width)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 8
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 5
     }
 }

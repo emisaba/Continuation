@@ -1,24 +1,17 @@
 import UIKit
 import SDWebImage
 import ReplayKit
+import Hero
 
 class MainViewController: UIViewController {
     
     // MARK: - Properties
     
-    let animation = UIImageView()
+    private let animation = UIImageView()
     
     private lazy var headerView: HeaderView = {
         let view = HeaderView()
         view.delegate = self
-        return view
-    }()
-    
-    public lazy var animationView: AnimationView = {
-        let view = AnimationView()
-        view.animationViewDelegate = self
-        view.isHidden = true
-        view.startButton.isHidden = true
         return view
     }()
     
@@ -32,25 +25,23 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    public lazy var coloseAnimationButton: UIButton = {
-        let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "close"), for: .normal)
-        button.alpha = 0
-        button.addTarget(self, action: #selector(didTapCloseAnimationButton), for: .touchUpInside)
-        return button
+    public let characterImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.animationImages = [#imageLiteral(resourceName: "start"), #imageLiteral(resourceName: "camera-white"), #imageLiteral(resourceName: "close"), #imageLiteral(resourceName: "camera"), #imageLiteral(resourceName: "camera2")]
+        iv.animationRepeatCount = 0
+        iv.animationDuration = 5
+        iv.startAnimating()
+        return iv
     }()
     
-    public let recorder = RPScreenRecorder.shared()
-    public var previewVC: RPPreviewViewController?
+    private var characterDirectionToRight = false
     
-    private let recordBaseView = RecordBaseView()
     private let recordView = RecordView()
     
     private var records: [Record] = [] {
         didSet {
             recordView.days = records
             headerView.days = records
-            animationView.days = records
         }
     }
     
@@ -61,6 +52,8 @@ class MainViewController: UIViewController {
         
         fetchRecord()
         configureUI()
+        
+        characterAnimation()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -84,15 +77,6 @@ class MainViewController: UIViewController {
         present(picker, animated: true)
     }
     
-    @objc func didTapCloseAnimationButton() {
-        UIView.animate(withDuration: 0.1) {
-            self.animationView.frame.size.height = self.view.frame.height / 3
-            self.view.layoutIfNeeded()
-        } completion: { _ in
-            self.animationView.isHidden = true
-        }
-    }
-    
     // MARK: - Helpers
     
     func configureUI() {
@@ -102,54 +86,37 @@ class MainViewController: UIViewController {
         let vacantHeaderView = UIView()
         view.addSubview(vacantHeaderView)
         vacantHeaderView.anchor(top: view.topAnchor,
-                         left: view.leftAnchor,
-                         right: view.rightAnchor,
-                         height: view.frame.height / 3)
-        
-        view.addSubview(headerView)
-        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3)
+                                left: view.leftAnchor,
+                                right: view.rightAnchor,
+                                height: view.frame.height / 3)
         
         view.addSubview(cameraButton)
         cameraButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
                             paddingBottom: 10)
         cameraButton.setDimensions(height: 60, width: 60)
         cameraButton.centerX(inView: view)
-
-        view.addSubview(recordBaseView)
-        recordBaseView.anchor(top: vacantHeaderView.bottomAnchor,
-                              left: view.leftAnchor,
-                              bottom: cameraButton.topAnchor,
-                              right: view.rightAnchor)
-
+        
+        view.addSubview(headerView)
+        headerView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height / 3)
+        
         view.addSubview(recordView)
         recordView.anchor(top: vacantHeaderView.bottomAnchor,
                           left: view.leftAnchor,
                           bottom: cameraButton.topAnchor,
                           right: view.rightAnchor)
         
-        view.addSubview(animationView)
-        animationView.frame = CGRect(x: 0,
-                                     y: 0,
-                                     width: self.view.frame.width,
-                                     height: self.view.frame.height / 3)
-        animationView.backgroundColor = .white
-        
-        animationView.addSubview(coloseAnimationButton)
-        coloseAnimationButton.frame = CGRect(x: headerView.frame.width - 80,
-                                                 y: 40,
-                                                 width: 60, height: 60)
+        view.addSubview(characterImageView)
+        characterImageView.frame = CGRect(x: 0, y: view.frame.height - 50, width: 50, height: 50)
     }
     
-    func showAnimationView() {
-        animationView.customAlert.alpha = 0
-        dismiss(animated: true, completion: nil)
+    func characterAnimation() {
         
-        animationView.startAnimationCount = 0
-        animationView.configureSlides()
-        animationView.startButton.isHidden = false
-        
-        UIView.animate(withDuration: 0.25) {
-            self.animationView.viewsInContainer.forEach { $0.alpha = 1 }
+        UIView.animate(withDuration: 30) {
+            self.characterImageView.frame.origin.x = self.characterDirectionToRight ? 0 : self.view.frame.width - 50
+            
+        } completion: {_ in
+            self.characterAnimation()
+            self.characterDirectionToRight.toggle()
         }
     }
 }
@@ -173,6 +140,26 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
             self.fetchRecord()
             
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - HeaderViewDelegate
+
+extension MainViewController: HeaderViewDelegate {
+    
+    func startAnimation(headerView: HeaderView) {
+        characterImageView.isHidden = true
+        
+        headerView.hero.id = "showAnimationView"
+        
+        let vc = AnimationViewController(records: records)
+        vc.animationView.hero.id = "showAnimationView"
+        vc.modalPresentationStyle = .fullScreen
+        vc.isHeroEnabled = true
+        
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+            self.present(vc, animated: true, completion: nil)
         }
     }
 }
