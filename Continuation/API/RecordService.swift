@@ -12,17 +12,20 @@ struct RecordService {
         ImageUploader.ImageUploader(image: info.image) { imageUrl in
             
             let date = info.date.replacingOccurrences(of: "/", with: ".")
-            let data = ["imageUrl": imageUrl, "date": date]
+            let data: [String: Any] = ["imageUrl": imageUrl,
+                                       "date": date,
+                                       "timeStamp": Timestamp()]
             
             COLLECTION_RECORDS.addDocument(data: data, completion: completion)
         }
     }
     
     static func fetchDayInfo(completion: @escaping(([Record]) -> Void)) {
-        COLLECTION_RECORDS.getDocuments { snapshot, error in
+        COLLECTION_RECORDS.order(by: "timeStamp", descending: false).getDocuments { snapshot, error in
             guard let documents = snapshot?.documents else { return }
             
             let days = documents.map { Record( day: $0.data()) }
+            print("###days: \(days)")
             completion(days)
         }
     }

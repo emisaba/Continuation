@@ -18,7 +18,7 @@ class HeaderView: UIView {
     
     public lazy var startButton: UIButton = {
         let button = UIButton()
-        button.setImage(#imageLiteral(resourceName: "start"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "start-white"), for: .normal)
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         button.layer.cornerRadius = 30
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)

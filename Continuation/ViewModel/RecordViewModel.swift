@@ -11,6 +11,10 @@ struct RecordViewModel {
         return dataForSquare.dateString
     }
     
+    var dateTextColor: UIColor {
+        return dataForSquare.record != nil ? .white : .customRed()
+    }
+    
     var shouldShowSquare: Bool {
         return dataForSquare.dateString == ""
     }

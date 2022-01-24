@@ -20,17 +20,16 @@ class MainViewController: UIViewController {
         button.backgroundColor = .customRed()
         button.layer.cornerRadius = 30
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        button.setImage(#imageLiteral(resourceName: "camera-white"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "camera2"), for: .normal)
         button.addTarget(self, action: #selector(didTapCameraButton), for: .touchUpInside)
         return button
     }()
     
-    public let characterImageView: UIImageView = {
+    public lazy var characterImageView: UIImageView = {
         let iv = UIImageView()
-        iv.animationImages = [#imageLiteral(resourceName: "start"), #imageLiteral(resourceName: "camera-white"), #imageLiteral(resourceName: "close"), #imageLiteral(resourceName: "camera"), #imageLiteral(resourceName: "camera2")]
         iv.animationRepeatCount = 0
-        iv.animationDuration = 5
-        iv.startAnimating()
+        iv.animationDuration = 1
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -52,12 +51,15 @@ class MainViewController: UIViewController {
         
         fetchRecord()
         configureUI()
-        
-        characterAnimation()
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        characterImageView.isHidden = false
     }
     
     // MARK: - API
@@ -65,6 +67,21 @@ class MainViewController: UIViewController {
     func fetchRecord() {
         RecordService.fetchDayInfo { days in
             self.records = days
+            self.checkIfWhenWasLastDay()
+        }
+    }
+    
+    func uploadDaysInfo(image: UIImage, date: String) {
+        RecordService.uploadDaysInfo(info: RecordInfo(image: image, date: date)) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            self.headerView.prepareToFetch()
+            self.fetchRecord()
+            
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -72,7 +89,7 @@ class MainViewController: UIViewController {
     
     @objc func didTapCameraButton() {
         let picker = UIImagePickerController()
-        picker.sourceType = .camera
+        picker.allowsEditing = true
         picker.delegate = self
         present(picker, animated: true)
     }
@@ -103,20 +120,52 @@ class MainViewController: UIViewController {
         recordView.anchor(top: vacantHeaderView.bottomAnchor,
                           left: view.leftAnchor,
                           bottom: cameraButton.topAnchor,
-                          right: view.rightAnchor)
+                          right: view.rightAnchor,
+                          paddingTop: 20)
         
         view.addSubview(characterImageView)
-        characterImageView.frame = CGRect(x: 0, y: view.frame.height - 50, width: 50, height: 50)
+        characterImageView.frame = CGRect(x: 0, y: view.frame.height - 80, width: 80, height: 80)
     }
     
     func characterAnimation() {
         
         UIView.animate(withDuration: 30) {
-            self.characterImageView.frame.origin.x = self.characterDirectionToRight ? 0 : self.view.frame.width - 50
+            self.characterImageView.frame.origin.x = self.characterDirectionToRight ? 0 : self.view.frame.width - 80
+            self.setCharacterImages()
+            self.characterImageView.startAnimating()
             
         } completion: {_ in
             self.characterAnimation()
             self.characterDirectionToRight.toggle()
+        }
+    }
+    
+    func niwatoriImages(isLeft: Bool) -> [UIImage] {
+        var images: [UIImage] = []
+        
+        for i in 0 ..< 12 {
+            let imageName = isLeft ? "niwatori-left-\(i)" : "niwatori-right-\(i)"
+            images.append(UIImage(named: imageName) ?? UIImage())
+        }
+        return images
+    }
+    
+    func checkIfWhenWasLastDay() {
+        guard let lastDay = records.last?.timeStamp.dateValue() else { return }
+        let over3days = Calendar.isOver3days(day: lastDay)
+        
+        if over3days {
+            characterImageView.isHidden = true
+        }
+        
+        characterAnimation()
+    }
+    
+    func setCharacterImages() {
+        if records.count > 3 {
+            characterImageView.animationImages = characterDirectionToRight ? niwatoriImages(isLeft: false) : niwatoriImages(isLeft: true)
+        } else {
+            characterImageView.animationImages = characterDirectionToRight ? [#imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "8")] :  [#imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "2"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "1")]
         }
     }
 }
@@ -126,21 +175,9 @@ class MainViewController: UIViewController {
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         guard let image = info[.originalImage] as? UIImage else { return }
         let date = DateFormatter.today().string(from: Date())
-        
-        RecordService.uploadDaysInfo(info: RecordInfo(image: image, date: date)) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            self.headerView.prepareToFetch()
-            self.fetchRecord()
-            
-            self.dismiss(animated: true, completion: nil)
-        }
+        uploadDaysInfo(image: image, date: date)
     }
 }
 

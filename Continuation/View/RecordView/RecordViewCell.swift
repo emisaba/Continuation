@@ -60,5 +60,6 @@ class RecordViewCell: UICollectionViewCell {
         imageView.sd_setImage(with: viewModel.imageURL, completed: nil)
         imageView.isHidden = viewModel.shouldShowSquare
         dateLabel.text = viewModel.dateString
+        dateLabel.textColor = viewModel.dateTextColor
     }
 }

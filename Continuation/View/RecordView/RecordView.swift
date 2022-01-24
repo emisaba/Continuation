@@ -17,17 +17,19 @@ class RecordView: UIView {
     
     private lazy var preMonthButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .customRed()
+        button.setImage(#imageLiteral(resourceName: "left"), for: .normal)
         button.addTarget(self, action: #selector(didTapPreMonthButton), for: .touchUpInside)
         button.layer.cornerRadius = 25
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         return button
     }()
     
     private lazy var nextMonthButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .customRed()
+        button.setImage(#imageLiteral(resourceName: "right"), for: .normal)
         button.addTarget(self, action: #selector(didTapNextMonthButton), for: .touchUpInside)
         button.layer.cornerRadius = 25
+        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         return button
     }()
     

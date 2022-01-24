@@ -41,7 +41,6 @@ class AnimationViewController: UIViewController {
     // MARK: - Action
     
     @objc func didTapCloseAnimationButton() {
-        
         isFirstTime = false
         dismiss(animated: true, completion: nil)
     }
@@ -126,6 +125,10 @@ extension AnimationViewController: RPPreviewViewControllerDelegate {
     
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         showAnimationView()
+    }
+    
+    func previewController(_ previewController: RPPreviewViewController, didFinishWithActivityTypes activityTypes: Set<String>) {
+        dismiss(animated: true, completion: nil)
     }
 }
 
