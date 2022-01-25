@@ -11,6 +11,7 @@ target 'Continuation' do
   pod 'SDWebImage'
   pod 'lottie-ios' 
   pod 'Hero'
+  pod 'JGProgressHUD'
 
   # Pods for Continuation
 

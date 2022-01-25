@@ -48,17 +48,16 @@ class AnimationViewController: UIViewController {
     // MARK: - Helpers
     
     func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .customYellow()
         
         view.addSubview(animationView)
         animationView.fillSuperview()
         
         view.addSubview(closeAnimationButton)
         closeAnimationButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                                     right: view.rightAnchor,
-                                     paddingTop: 10,
-                                     paddingRight: 10)
-        closeAnimationButton.setDimensions(height: 60, width: 60)
+                                    right: view.rightAnchor,
+                                    paddingRight: 8)
+        closeAnimationButton.setDimensions(height: 50, width: 50)
     }
     
     func showAnimationView() {
@@ -66,7 +65,15 @@ class AnimationViewController: UIViewController {
         
         animationView.startAnimationCount = 0
         animationView.configureSlides()
+        
+        animationView.startButton.removeFromSuperview()
+        view.addSubview(animationView.startButton)
+        animationView.startButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                                         left: view.leftAnchor,
+                                         paddingLeft: 20)
+        animationView.startButton.setDimensions(height: 50, width: 50)
         animationView.startButton.isHidden = false
+        animationView.startButtonForAnimationVC()
         
         UIView.animate(withDuration: 0.25) {
             self.animationView.viewsInContainer.forEach { $0.alpha = 1 }

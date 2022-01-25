@@ -14,23 +14,25 @@ class CustomAlert: UIView {
     private let questionLabel: UILabel = {
         let label = UILabel()
         label.text = "save?"
-        label.font = .aileron(size: 50)
-        label.textColor = .systemGray
+        label.font = .aileron(size: 38)
+        label.textColor = .white
         label.textAlignment = .center
         return label
     }()
     
-    public lazy var yesButton = createButton(title: "yes", titleColor: .customRed())
-    public lazy var noButton = createButton(title: "no", titleColor: .systemGray)
+    public lazy var yesButton = createButton(title: "yes", titleColor: .customRed(), isYes: true)
+    public lazy var noButton = createButton(title: "no", titleColor: .white, isYes: false)
     
     // MARK: - LifeCycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
         
         let buttonStackView = UIStackView(arrangedSubviews: [noButton, yesButton])
         buttonStackView.distribution = .fillEqually
         buttonStackView.axis = .horizontal
+        buttonStackView.spacing = 20
         
         let alertStackView = UIStackView(arrangedSubviews: [questionLabel, buttonStackView])
         alertStackView.distribution = .fillEqually
@@ -61,13 +63,21 @@ class CustomAlert: UIView {
     
     // MARK: - Helpers
     
-    func createButton(title: String, titleColor: UIColor) -> UIButton {
+    func createButton(title: String, titleColor: UIColor, isYes: Bool) -> UIButton {
         let button = UIButton()
         button.setTitle(title, for: .normal)
-        button.setTitleColor(titleColor, for: .normal)
-        button.titleLabel?.font = .aileron(size: 48)
-        button.titleLabel?.textAlignment = .center
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = .aileron(size: 30)
+        button.titleLabel?.textAlignment = .left
         button.addTarget(self, action: #selector(didClickButton), for: .touchUpInside)
+        button.layer.cornerRadius = 10
+        
+        if isYes {
+            button.backgroundColor = .customRed()
+        } else {
+            button.layer.borderColor = UIColor.white.cgColor
+            button.layer.borderWidth = 2
+        }
         return button
     }
 }

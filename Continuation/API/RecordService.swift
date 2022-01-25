@@ -25,7 +25,6 @@ struct RecordService {
             guard let documents = snapshot?.documents else { return }
             
             let days = documents.map { Record( day: $0.data()) }
-            print("###days: \(days)")
             completion(days)
         }
     }

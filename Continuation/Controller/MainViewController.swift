@@ -18,9 +18,9 @@ class MainViewController: UIViewController {
     private lazy var cameraButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .customRed()
-        button.layer.cornerRadius = 30
+        button.layer.cornerRadius = 35
         button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        button.setImage(#imageLiteral(resourceName: "camera2"), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "camera-fill"), for: .normal)
         button.addTarget(self, action: #selector(didTapCameraButton), for: .touchUpInside)
         return button
     }()
@@ -33,7 +33,16 @@ class MainViewController: UIViewController {
         return iv
     }()
     
+    private let graveImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.image = #imageLiteral(resourceName: "grave")
+        iv.contentMode = .scaleAspectFit
+        iv.isHidden = true
+        return iv
+    }()
+    
     private var characterDirectionToRight = false
+    private var didPickImage = false
     
     private let recordView = RecordView()
     
@@ -53,13 +62,13 @@ class MainViewController: UIViewController {
         configureUI()
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         characterImageView.isHidden = false
+        
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { _ in
+            self.headerView.startButton.isHidden = false
+        }
     }
     
     // MARK: - API
@@ -67,11 +76,17 @@ class MainViewController: UIViewController {
     func fetchRecord() {
         RecordService.fetchDayInfo { days in
             self.records = days
-            self.checkIfWhenWasLastDay()
+            
+            if self.didPickImage {
+                self.characterImageView.startAnimating()
+            } else {
+                self.firstCharacterAnimation()
+            }
         }
     }
     
     func uploadDaysInfo(image: UIImage, date: String) {
+        
         RecordService.uploadDaysInfo(info: RecordInfo(image: image, date: date)) { error in
             if let error = error {
                 print(error.localizedDescription)
@@ -81,6 +96,7 @@ class MainViewController: UIViewController {
             self.headerView.prepareToFetch()
             self.fetchRecord()
             
+            self.showLoader(false)
             self.dismiss(animated: true, completion: nil)
         }
     }
@@ -91,7 +107,10 @@ class MainViewController: UIViewController {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
         picker.delegate = self
-        present(picker, animated: true)
+        present(picker, animated: true) {
+            self.characterImageView.stopAnimating()
+            self.didPickImage = true
+        }
     }
     
     // MARK: - Helpers
@@ -109,8 +128,8 @@ class MainViewController: UIViewController {
         
         view.addSubview(cameraButton)
         cameraButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                            paddingBottom: 10)
-        cameraButton.setDimensions(height: 60, width: 60)
+                            paddingBottom: 20)
+        cameraButton.setDimensions(height: 70, width: 70)
         cameraButton.centerX(inView: view)
         
         view.addSubview(headerView)
@@ -125,6 +144,28 @@ class MainViewController: UIViewController {
         
         view.addSubview(characterImageView)
         characterImageView.frame = CGRect(x: 0, y: view.frame.height - 80, width: 80, height: 80)
+        
+        view.addSubview(graveImageView)
+        graveImageView.anchor(bottom: view.bottomAnchor,
+                              right: view.rightAnchor,
+                              paddingBottom: 10,
+                              paddingRight: 40)
+        graveImageView.setDimensions(height: 50, width: 50)
+    }
+    
+    func firstCharacterAnimation() {
+        if let lastDay = records.last?.timeStamp.dateValue() {
+            let over3days = Calendar.isOver3days(day: lastDay)
+            
+            if over3days {
+                characterImageView.isHidden = true
+                graveImageView.isHidden = false
+            }
+            characterAnimation()
+            
+        } else {
+            characterAnimation()
+        }
     }
     
     func characterAnimation() {
@@ -133,7 +174,7 @@ class MainViewController: UIViewController {
             self.characterImageView.frame.origin.x = self.characterDirectionToRight ? 0 : self.view.frame.width - 80
             self.setCharacterImages()
             self.characterImageView.startAnimating()
-            
+
         } completion: {_ in
             self.characterAnimation()
             self.characterDirectionToRight.toggle()
@@ -150,22 +191,11 @@ class MainViewController: UIViewController {
         return images
     }
     
-    func checkIfWhenWasLastDay() {
-        guard let lastDay = records.last?.timeStamp.dateValue() else { return }
-        let over3days = Calendar.isOver3days(day: lastDay)
-        
-        if over3days {
-            characterImageView.isHidden = true
-        }
-        
-        characterAnimation()
-    }
-    
     func setCharacterImages() {
-        if records.count > 3 {
+        if records.count > 100 {
             characterImageView.animationImages = characterDirectionToRight ? niwatoriImages(isLeft: false) : niwatoriImages(isLeft: true)
         } else {
-            characterImageView.animationImages = characterDirectionToRight ? [#imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "8")] :  [#imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "2"), #imageLiteral(resourceName: "3"), #imageLiteral(resourceName: "1")]
+            characterImageView.animationImages = characterDirectionToRight ? [#imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "6"), #imageLiteral(resourceName: "5"), #imageLiteral(resourceName: "8")] : [#imageLiteral(resourceName: "1"), #imageLiteral(resourceName: "2"), #imageLiteral(resourceName: "2-1"), #imageLiteral(resourceName: "3")]
         }
     }
 }
@@ -175,6 +205,8 @@ class MainViewController: UIViewController {
 extension MainViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.showLoader(true)
+        
         guard let image = info[.originalImage] as? UIImage else { return }
         let date = DateFormatter.today().string(from: Date())
         uploadDaysInfo(image: image, date: date)
@@ -186,8 +218,6 @@ extension MainViewController: UIImagePickerControllerDelegate, UINavigationContr
 extension MainViewController: HeaderViewDelegate {
     
     func startAnimation(headerView: HeaderView) {
-        characterImageView.isHidden = true
-        
         headerView.hero.id = "showAnimationView"
         
         let vc = AnimationViewController(records: records)
@@ -196,7 +226,11 @@ extension MainViewController: HeaderViewDelegate {
         vc.isHeroEnabled = true
         
         Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
-            self.present(vc, animated: true, completion: nil)
+            self.headerView.startButton.isHidden = true
+            
+            self.present(vc, animated: true) {
+                self.characterImageView.isHidden = true
+            }
         }
     }
 }

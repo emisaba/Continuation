@@ -12,9 +12,7 @@
 		820929642743D5A0009C743A /* RecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929632743D5A0009C743A /* RecordView.swift */; };
 		820929662743D899009C743A /* RecordViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929652743D899009C743A /* RecordViewCell.swift */; };
 		8209296A2744EC6C009C743A /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820929692744EC6C009C743A /* UIColor + Extension.swift */; };
-		8209296C27450838009C743A /* Matchbook.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8209296B27450837009C743A /* Matchbook.ttf */; };
 		8209296E274508C9009C743A /* UIFont + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8209296D274508C9009C743A /* UIFont + Extension.swift */; };
-		8209297027450AE7009C743A /* x3cosmo-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8209296F27450AE7009C743A /* x3cosmo-Regular.otf */; };
 		8209297327450CCF009C743A /* Ailerons-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8209297227450CCF009C743A /* Ailerons-Regular.otf */; };
 		82278863274126BC00277436 /* HeaderViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82278862274126BC00277436 /* HeaderViewCard.swift */; };
 		8235BD06279EE94900857E39 /* Calendar + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8235BD05279EE94900857E39 /* Calendar + Extension.swift */; };
@@ -35,6 +33,10 @@
 		8247EC4C2740FB3D0067EC90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8247EC4B2740FB3C0067EC90 /* GoogleService-Info.plist */; };
 		825E696B2746A4B50054294C /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E696A2746A4B50054294C /* AnimationView.swift */; };
 		8261C52127464F5E00FDA871 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8261C52027464F5800FDA871 /* CustomAlert.swift */; };
+		82880B53279F8E71008A44C0 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82880B52279F8E71008A44C0 /* UIViewController + Extension.swift */; };
+		82880B5A279FB332008A44C0 /* Senobi-Gothic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82880B57279FB332008A44C0 /* Senobi-Gothic-Regular.ttf */; };
+		82880B5B279FB332008A44C0 /* Senobi-Gothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82880B58279FB332008A44C0 /* Senobi-Gothic-Bold.ttf */; };
+		82880B5C279FB332008A44C0 /* Senobi-Gothic-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82880B59279FB332008A44C0 /* Senobi-Gothic-Medium.ttf */; };
 		82D6423D2765AEE500346190 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6423C2765AEE200346190 /* CalendarHelper.swift */; };
 		82D6423F2766059100346190 /* DataForSingleDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6423E2766058C00346190 /* DataForSingleDay.swift */; };
 		82D6424127660E7B00346190 /* RecordingView + Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D6424027660E7B00346190 /* RecordingView + Calendar.swift */; };
@@ -69,9 +71,7 @@
 		820929632743D5A0009C743A /* RecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordView.swift; sourceTree = "<group>"; };
 		820929652743D899009C743A /* RecordViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewCell.swift; sourceTree = "<group>"; };
 		820929692744EC6C009C743A /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
-		8209296B27450837009C743A /* Matchbook.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Matchbook.ttf; sourceTree = "<group>"; };
 		8209296D274508C9009C743A /* UIFont + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Extension.swift"; sourceTree = "<group>"; };
-		8209296F27450AE7009C743A /* x3cosmo-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "x3cosmo-Regular.otf"; sourceTree = "<group>"; };
 		8209297227450CCF009C743A /* Ailerons-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ailerons-Regular.otf"; sourceTree = "<group>"; };
 		82278862274126BC00277436 /* HeaderViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewCard.swift; sourceTree = "<group>"; };
 		8235BD05279EE94900857E39 /* Calendar + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar + Extension.swift"; sourceTree = "<group>"; };
@@ -98,6 +98,10 @@
 		8247EC4B2740FB3C0067EC90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		825E696A2746A4B50054294C /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
 		8261C52027464F5800FDA871 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		82880B52279F8E71008A44C0 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
+		82880B57279FB332008A44C0 /* Senobi-Gothic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Senobi-Gothic-Regular.ttf"; sourceTree = "<group>"; };
+		82880B58279FB332008A44C0 /* Senobi-Gothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Senobi-Gothic-Bold.ttf"; sourceTree = "<group>"; };
+		82880B59279FB332008A44C0 /* Senobi-Gothic-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Senobi-Gothic-Medium.ttf"; sourceTree = "<group>"; };
 		82D6423C2765AEE200346190 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		82D6423E2766058C00346190 /* DataForSingleDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataForSingleDay.swift; sourceTree = "<group>"; };
 		82D6424027660E7B00346190 /* RecordingView + Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecordingView + Calendar.swift"; sourceTree = "<group>"; };
@@ -141,8 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				8209297227450CCF009C743A /* Ailerons-Regular.otf */,
-				8209296B27450837009C743A /* Matchbook.ttf */,
-				8209296F27450AE7009C743A /* x3cosmo-Regular.otf */,
+				82880B56279FB332008A44C0 /* senobi */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				8209296D274508C9009C743A /* UIFont + Extension.swift */,
 				82E0A53A2740FD3A0095D376 /* DataFormatter + Extension.swift */,
 				8235BD05279EE94900857E39 /* Calendar + Extension.swift */,
+				82880B52279F8E71008A44C0 /* UIViewController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +296,16 @@
 				82D6423E2766058C00346190 /* DataForSingleDay.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		82880B56279FB332008A44C0 /* senobi */ = {
+			isa = PBXGroup;
+			children = (
+				82880B57279FB332008A44C0 /* Senobi-Gothic-Regular.ttf */,
+				82880B58279FB332008A44C0 /* Senobi-Gothic-Bold.ttf */,
+				82880B59279FB332008A44C0 /* Senobi-Gothic-Medium.ttf */,
+			);
+			path = senobi;
 			sourceTree = "<group>";
 		};
 		A05B26E1F2BC14EE6615AB9E /* Frameworks */ = {
@@ -426,11 +440,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8247EC0E2740F9CA0067EC90 /* LaunchScreen.storyboard in Resources */,
-				8209296C27450838009C743A /* Matchbook.ttf in Resources */,
 				8247EC0B2740F9CA0067EC90 /* Assets.xcassets in Resources */,
+				82880B5B279FB332008A44C0 /* Senobi-Gothic-Bold.ttf in Resources */,
 				8247EC4C2740FB3D0067EC90 /* GoogleService-Info.plist in Resources */,
-				8209297027450AE7009C743A /* x3cosmo-Regular.otf in Resources */,
+				82880B5C279FB332008A44C0 /* Senobi-Gothic-Medium.ttf in Resources */,
 				8209297327450CCF009C743A /* Ailerons-Regular.otf in Resources */,
+				82880B5A279FB332008A44C0 /* Senobi-Gothic-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +583,7 @@
 				82D6423D2765AEE500346190 /* CalendarHelper.swift in Sources */,
 				8261C52127464F5E00FDA871 /* CustomAlert.swift in Sources */,
 				820929642743D5A0009C743A /* RecordView.swift in Sources */,
+				82880B53279F8E71008A44C0 /* UIViewController + Extension.swift in Sources */,
 				8247EC042740F9C40067EC90 /* SceneDelegate.swift in Sources */,
 				8209296A2744EC6C009C743A /* UIColor + Extension.swift in Sources */,
 				820929662743D899009C743A /* RecordViewCell.swift in Sources */,

@@ -1,3 +1,3 @@
 import Firebase
 
-let COLLECTION_RECORDS = Firestore.firestore().collection("record")
+let COLLECTION_RECORDS = Firestore.firestore().collection("record2")

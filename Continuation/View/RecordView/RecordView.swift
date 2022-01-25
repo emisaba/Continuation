@@ -9,7 +9,6 @@ class RecordView: UIView {
     public lazy var monthLabel: UILabel = {
         let label = UILabel()
         label.font = .aileron(size: 30)
-        label.text = CalendarHelper().titleMonthString(date: selectDate)
         label.textColor = .customRed()
         label.textAlignment = .center
         return label
@@ -20,7 +19,7 @@ class RecordView: UIView {
         button.setImage(#imageLiteral(resourceName: "left"), for: .normal)
         button.addTarget(self, action: #selector(didTapPreMonthButton), for: .touchUpInside)
         button.layer.cornerRadius = 25
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         return button
     }()
     
@@ -29,7 +28,7 @@ class RecordView: UIView {
         button.setImage(#imageLiteral(resourceName: "right"), for: .normal)
         button.addTarget(self, action: #selector(didTapNextMonthButton), for: .touchUpInside)
         button.layer.cornerRadius = 25
-        button.contentEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         return button
     }()
     
@@ -104,6 +103,7 @@ class RecordView: UIView {
         stackView.anchor(top: monthLabel.bottomAnchor,
                          left: leftAnchor,
                          right: rightAnchor,
+                         paddingTop: 10,
                          height: 50)
         
         addSubview(collectionView)

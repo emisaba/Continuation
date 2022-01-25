@@ -38,8 +38,17 @@ extension RecordView {
             }
             count += 1
         }
-        monthLabel.text = CalendarHelper().titleMonthString(date: selectDate)
+        createMonthFont()
         collectionView.reloadData()
+    }
+    
+    func createMonthFont() {
+        let monthString = CalendarHelper().titleMonthJapaneseString(date: selectDate)
+        let numberAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.aileron(size: 38), .kern: -10]
+        let textAttributes: [NSAttributedString.Key: Any] = [.font: UIFont.senobi(size: 30)]
+        let attributedText = NSMutableAttributedString(string: monthString, attributes: numberAttributes)
+        attributedText.append(NSAttributedString(string: " 月", attributes: textAttributes))
+        monthLabel.attributedText = attributedText
     }
     
     func checkIfRecordExist(totalSquare: String) -> DataForSquare {

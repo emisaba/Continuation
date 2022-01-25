@@ -19,8 +19,10 @@ class HeaderView: UIView {
     public lazy var startButton: UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "start-white"), for: .normal)
-        button.contentEdgeInsets = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        button.layer.cornerRadius = 30
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 2.5
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 13.5, bottom: 12, right: 12)
+        button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(didTapStartButton), for: .touchUpInside)
         return button
     }()
@@ -53,7 +55,7 @@ class HeaderView: UIView {
     // MARK: - Actions
     
     @objc func didTapStartButton() {
-        self.delegate?.startAnimation(headerView: self)
+        delegate?.startAnimation(headerView: self)
     }
     
     // MARK: - Helpers
@@ -77,12 +79,21 @@ class HeaderView: UIView {
     
     func configureStartButtton() {
         addSubview(startButton)
-        startButton.setDimensions(height: 60, width: 60)
-        startButton.centerX(inView: baseView)
-        startButton.centerY(inView: baseView)
+        startButton.setDimensions(height: 40, width: 40)
+        startButton.anchor(top: topAnchor,
+                           left: leftAnchor,
+                           paddingTop: 20,
+                           paddingLeft: 20)
     }
     
     func prepareToFetch() {
         baseView.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    func startButtonForAnimationVC() {
+        startButton.layer.cornerRadius = 15
+        startButton.layer.borderWidth = 2.5
+        startButton.contentEdgeInsets = UIEdgeInsets(top: 13, left: 17, bottom: 13, right: 13)
+        startButton.layer.borderColor = UIColor.white.cgColor
     }
 }

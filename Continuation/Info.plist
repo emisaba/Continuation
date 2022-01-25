@@ -62,9 +62,12 @@
 	<string>Please allow us to take a photo</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Matchbook.ttf</string>
-		<string>x3cosmo-Regular.otf</string>
+		<string>Senobi-Gothic-Regular.ttf</string>
 		<string>Ailerons-Regular.otf</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>

@@ -22,6 +22,18 @@ class CalendarHelper {
         return dateFormatter.string(from: date)
     }
     
+    func titleMonthJapaneseString(date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.locale = Locale(identifier: "ja_JP")
+        let wholeDate = dateFormatter.string(from: date)
+        let wholeDateCount = wholeDate.count > 10
+        let startIndex = wholeDate.index(wholeDate.startIndex, offsetBy: 5)
+        let endIndex = wholeDate.index(wholeDate.startIndex, offsetBy: wholeDateCount ? 7 : 6)
+        let onlyMonth = wholeDate[ startIndex ..< endIndex]
+        return String(onlyMonth)
+    }
+    
     func monthString(date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM"
